@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Ponto Eletrônico</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div id="app" class="container">
+    <h1 class="mt-4 mb-4">Gerador de Ponto Eletrônico</h1>
+
+    <form @submit.prevent="submitForm">
+      <label for="entrada1">Você começa o expediente entre:</label>
+      <div class="row">
+        <div class="col-5">
+          <div class="form-group">
+            <input type="time" class="form-control" id="entrada1" v-model="entrada1">
+          </div>
+        </div>
+        <div class="col-2 text-center">e</div>
+        <div class="col-5">
+          <div class="form-group">
+            <input type="time" class="form-control" id="entrada2" v-model="entrada2">
+          </div>
+        </div>
+      </div>
+      <label for="saidaAlmoco1">Você sai para o almoço entre:</label>
+      <div class="row">
+        <div class="col-5">
+          <div class="form-group">
+            <input type="time" class="form-control" id="saidaAlmoco1" v-model="saidaAlmoco1">
+          </div>
+        </div>
+        <div class="col-2 text-center">e</div>
+        <div class="col-5">
+          <div class="form-group">
+            <input type="time" class="form-control" id="saidaAlmoco2" v-model="saidaAlmoco2">
+          </div>
+        </div>
+      </div>
+      <label for="retornoAlmoco1">Você retorna do almoço entre:</label>
+      <div class="row">
+        <div class="col-5">
+          <div class="form-group">
+            <input type="time" class="form-control" id="retornoAlmoco1" v-model="retornoAlmoco1">
+          </div>
+        </div>
+        <div class="col-2 text-center">e</div>
+        <div class="col-5">
+          <div class="form-group">
+            <input type="time" class="form-control" id="retornoAlmoco2" v-model="retornoAlmoco2">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dias">Quantidade de dias:</label>
+        <input type="number" class="form-control" id="dias" v-model="dias">
+      </div>
+
+      <div class="form-group">
+        <label for="cargaHoraria">Carga horária:</label>
+        <input type="number" class="form-control" id="cargaHoraria" v-model="cargaHoraria">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Gerar</button>
+    </form>
+    <div v-if="tabela.length">
+      <table class="table mt-4">
+        <thead>
+          <tr>
+            <th> </th>
+            <th>Entrada</th>
+            <th>Almoço</th>
+            <th>Retorno</th>
+            <th>Fim do Expediente</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in tabela" :key="index">
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.entrada }}</td>
+            <td>{{ item.saidaAlmoco }}</td>
+            <td>{{ item.retornoAlmoco }}</td>
+            <td>{{ item.saida }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><b>Esse gerador te ajudou?</b><br />
+      Se quiser me pagar uma cerveja eu aceito<br />
+      Chave PIX: cirobsb_br@yahoo.com.br
+      </p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="script.js"></script>
+<script>
+  
+</script>
+</body>
+</html>
